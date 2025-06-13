@@ -2,7 +2,6 @@ import tkinter as tk
 import os
 from database import Database
 from utils.message_utils import MessageHandler
-from utils.password_utils import generate_password, copy_to_clipboard
 from ui.login_screen import LoginScreen
 from ui.dashboard_screen import DashboardScreen
 from ui.add_entry_screen import AddEntryScreen
