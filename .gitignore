@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Application specific
+vault.db
+master_pass.json
+*.db
+*.json
+
+
+# Temporary files
+tempCodeRunnerFile.py
+*.tmp 
