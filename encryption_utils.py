@@ -9,7 +9,11 @@ import base64
 def derive_key(password: str, salt: bytes, iterations: int = 100_000) -> bytes:
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
+<<<<<<< HEAD
+        length=32,
+=======
         length=32,  # 256-bit key
+>>>>>>> 1721b5a4d55364eff3d1c2a4957a4f788bf4d5e6
         salt=salt,
         iterations=iterations,
         backend=default_backend()
@@ -17,6 +21,15 @@ def derive_key(password: str, salt: bytes, iterations: int = 100_000) -> bytes:
     return kdf.derive(password.encode())
 
 def encrypt(plaintext: str, password: str):
+<<<<<<< HEAD
+    salt = os.urandom(16)
+    iv = os.urandom(16)
+    key = derive_key(password, salt)
+
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(plaintext.encode()) + padder.finalize()
+
+=======
     salt = os.urandom(16)  # Random salt
     iv = os.urandom(16)    # Initialization vector
     key = derive_key(password, salt)
@@ -26,6 +39,7 @@ def encrypt(plaintext: str, password: str):
     padded_data = padder.update(plaintext.encode()) + padder.finalize()
 
     # AES encryption in CBC mode
+>>>>>>> 1721b5a4d55364eff3d1c2a4957a4f788bf4d5e6
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
     encryptor = cipher.encryptor()
     ciphertext = encryptor.update(padded_data) + encryptor.finalize()
@@ -47,7 +61,10 @@ def decrypt(ciphertext_b64: str, password: str, salt_b64: str, iv_b64: str):
     decryptor = cipher.decryptor()
     padded_plaintext = decryptor.update(ciphertext) + decryptor.finalize()
 
+<<<<<<< HEAD
+=======
     # Remove PKCS7 padding
+>>>>>>> 1721b5a4d55364eff3d1c2a4957a4f788bf4d5e6
     unpadder = padding.PKCS7(128).unpadder()
     plaintext = unpadder.update(padded_plaintext) + unpadder.finalize()
 
